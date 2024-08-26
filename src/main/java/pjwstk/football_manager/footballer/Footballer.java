@@ -1,5 +1,6 @@
 package pjwstk.football_manager.footballer;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -12,9 +13,13 @@ public class Footballer {
 
     @Id
     private UUID id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String surname;
+    @Column(nullable = false)
     private LocalDate dateOfBirth;
+    @Column(nullable = false)
     private Position position;
     @ManyToOne
     private Nationality nationality;
@@ -82,8 +87,6 @@ public class Footballer {
     }
 
     public void setTeam(Team team) {
-        if(team == null)
-            throw new IllegalArgumentException("Team cannot be null");
         this.team = team;
     }
 }
