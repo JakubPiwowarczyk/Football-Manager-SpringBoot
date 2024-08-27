@@ -1,9 +1,9 @@
 package pjwstk.football_manager.player;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import pjwstk.football_manager.club.Club;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -11,6 +11,7 @@ import java.util.UUID;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(nullable = false)
     private String nickname;
@@ -18,6 +19,8 @@ public class Player {
     private String email;
     @Column(nullable = false)
     private String password;
+    @OneToMany
+    private List<Club> clubs;
 
     public Player() {
     }

@@ -1,8 +1,6 @@
 package pjwstk.football_manager.cardspack;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -11,6 +9,7 @@ import java.util.UUID;
 public class CardsPack {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(nullable = false)
     private String title;
