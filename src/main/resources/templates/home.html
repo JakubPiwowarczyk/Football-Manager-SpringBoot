@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Football Club Manager - Home</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .welcome-message {
+      color: #e94560;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .panel-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .panel {
+      background-color: #162447;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      color: #f0f0f0;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      flex: 1 1 45%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .panel:hover {
+      background-color: #1f4068;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="welcome-message">
+    Welcome, <span th:text="${nickname}">Player</span>
+  </div>
+  <div class="panel-container">
+    <div class="panel" th:onclick="|window.location='@{/clubs}'|">Your Clubs</div>
+    <div class="panel" th:onclick="|window.location='@{/create-match}'|">Create Match</div>
+    <div class="panel" th:onclick="|window.location='@{/transfer-market}'|">Transfer Market</div>
+    <div class="panel" th:onclick="|window.location='@{/packs-shop}'|">Packs Shop</div>
+  </div>
+</div>
+</body>
+</html>
