@@ -1,8 +1,11 @@
 package pjwstk.football_manager.club;
 
 import jakarta.persistence.*;
+import pjwstk.football_manager.card.FootballerCard;
 import pjwstk.football_manager.player.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +23,10 @@ public class Club {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Player owner;
+    @OneToMany
+    private List<FootballerCard> cards = new ArrayList<>();
+    @OneToMany
+    private List<FootballerCard> starting11 = new ArrayList<>(11);
 
     public UUID getId() {
         return id;

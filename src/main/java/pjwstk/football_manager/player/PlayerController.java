@@ -1,5 +1,7 @@
 package pjwstk.football_manager.player;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +26,14 @@ public class PlayerController {
     }
 
     @PostMapping("/login")
-    String login(@RequestParam String email, @RequestParam String password, Model model) {
+    String login(@RequestParam String email, @RequestParam String password,
+                 Model model, HttpServletResponse response) {
         Optional<Player> player = playerService.findByEmail(email);
         if (player.isPresent()) {
             Player p = player.get();
             if (p.getPassword().equals(password)) {
                 model.addAttribute("nickname", p.getNickname());
+                response.addCookie(new Cookie("id", p.getId().toString()));
                 return "home";
             }
         }

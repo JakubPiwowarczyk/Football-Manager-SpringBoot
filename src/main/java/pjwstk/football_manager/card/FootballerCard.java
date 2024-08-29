@@ -15,6 +15,7 @@ public abstract class FootballerCard {
     protected int matchesInContract;
     protected float salaryPerMatch;
     @ManyToOne
+    @JoinColumn(nullable = false)
     protected Footballer footballer;
 
     // Stats for field players
