@@ -3,6 +3,7 @@ package pjwstk.football_manager.footballer;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +24,30 @@ public class Footballer {
     private Nationality nationality;
     @ManyToOne
     private Team team;
+
+    public Footballer() {
+    }
+
+    public Footballer(UUID id, String name, String surname, LocalDate dateOfBirth,
+                      Position position, Nationality nationality, Team team) {
+        this.id = id;
+        this.setName(name);
+        this.setSurname(surname);
+        this.dateOfBirth = dateOfBirth;
+        this.setPosition(position);
+        this.setNationality(nationality);
+        this.setTeam(team);
+    }
+
+    public Footballer(String name, String surname, LocalDate dateOfBirth,
+                      Position position, Nationality nationality, Team team) {
+        this.setName(name);
+        this.setSurname(surname);
+        this.dateOfBirth = dateOfBirth;
+        this.setPosition(position);
+        this.setNationality(nationality);
+        this.setTeam(team);
+    }
 
     public UUID getId() {
         return id;
@@ -85,6 +110,34 @@ public class Footballer {
     }
 
     public void setTeam(Team team) {
+        if (team == null)
+            throw new IllegalArgumentException("Team cannot be null");
         this.team = team;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Footballer that = (Footballer) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Footballer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", position=" + position +
+                ", nationality=" + nationality.getName() +
+                ", team=" + team.getName() +
+                '}';
     }
 }
