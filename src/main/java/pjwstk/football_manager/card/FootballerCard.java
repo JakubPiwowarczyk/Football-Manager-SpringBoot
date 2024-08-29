@@ -7,6 +7,8 @@ import pjwstk.football_manager.footballer.Position;
 import java.util.UUID;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "card_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class FootballerCard {
 
     @Id
@@ -14,7 +16,7 @@ public abstract class FootballerCard {
     protected UUID id;
     protected int matchesInContract;
     protected float salaryPerMatch;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     protected Footballer footballer;
 
@@ -231,5 +233,17 @@ public abstract class FootballerCard {
         if (positioning < 0) positioning = 0;
         if (positioning > 99) positioning = 99;
         this.positioning = positioning;
+    }
+
+    public int getOverallRating() {
+        int overallRating = 0;
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            overallRating = (this.diving + this.handling + this.kicking +
+                    this.reflexes + this.speed + this.positioning)/6;
+        } else {
+            overallRating = (this.pace + this.shooting + this.passing +
+                    this.dribbling + this.defending + this.physical)/6;
+        }
+        return overallRating;
     }
 }

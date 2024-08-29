@@ -1,8 +1,10 @@
 package pjwstk.football_manager.card;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("TOTS")
 public class TeamOfTheSeasonCard extends FootballerCard {
 
     private PlayStyle playStyle1;

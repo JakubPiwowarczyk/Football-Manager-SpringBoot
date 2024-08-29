@@ -2,6 +2,7 @@ package pjwstk.football_manager.club;
 
 import jakarta.persistence.*;
 import pjwstk.football_manager.card.FootballerCard;
+import pjwstk.football_manager.match.Match;
 import pjwstk.football_manager.player.Player;
 
 import java.util.ArrayList;
@@ -20,13 +21,17 @@ public class Club {
     private float budget;
     @Column(nullable = false)
     private int leaguePoints;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private Player owner;
     @OneToMany
     private List<FootballerCard> cards = new ArrayList<>();
     @OneToMany
     private List<FootballerCard> starting11 = new ArrayList<>(11);
+    @OneToMany
+    private List<Match> matches = new ArrayList<>();
+    @OneToMany
+    private List<TransferOffer> transferOffers = new ArrayList<>();
 
     public UUID getId() {
         return id;
