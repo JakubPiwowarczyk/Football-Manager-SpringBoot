@@ -103,7 +103,9 @@
   <div class="buttons">
     <div class="button" th:onclick="|window.location='@{/players/renew-contract}'|">Renew the Contract</div>
     <div class="button" th:onclick="|window.location='@{/players/create-transfer-offer}'|">Create Transfer Offer</div>
-    <div class="button" th:onclick="|window.location='@{/players/add-to-starting-eleven}'|">Add to Starting 11</div>
+    <a th:href="@{/card/addToStarting11(cardId=${card.id})}">
+      <div class="button">Add to Starting 11</div>
+    </a>
   </div>
 </div>
 </body>

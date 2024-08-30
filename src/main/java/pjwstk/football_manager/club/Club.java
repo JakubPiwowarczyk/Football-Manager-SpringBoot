@@ -122,16 +122,12 @@ public class Club {
         return List.copyOf(starting11);
     }
 
-    public void setStarting11(List<FootballerCard> starting11) {
-        if (starting11.size() >= 11) throw new IllegalArgumentException("Starting 11 max capacity is 11!!!");
-        this.starting11 = starting11;
-    }
-
     public void addToStarting11(FootballerCard card) {
         if (card == null) throw new IllegalArgumentException("Card cannot be null");
         if (!cards.contains(card)) throw new IllegalArgumentException("Card does not belongs to this Club");
         if (starting11.size() >= 11) throw new IllegalArgumentException("Starting 11 is full!");
         if (!starting11.contains(card)) starting11.add(card);
+        card.setPartOfStarting11(true);
     }
 
     public void removeFromStarting11(FootballerCard card) {
