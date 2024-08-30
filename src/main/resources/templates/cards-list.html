@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Club Cards - Football Club Manager</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #162447;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 1000px;
+      color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #e94560;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #1f4068;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    th {
+      background-color: #1f4068;
+      color: #f0f0f0;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1a1a2e;
+    }
+
+    .manage-button {
+      background-color: #1f4068;
+      color: #f0f0f0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      border: none;
+    }
+
+    .manage-button:hover {
+      background-color: #e94560;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Your Club's Cards</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Surname</th>
+      <th>Position</th>
+      <th>Overall</th>
+      <th>Type of Card</th>
+      <th>Matches in Contract</th>
+      <th>Manage</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player : ${players}">
+      <td th:text="${player.surname}">Surname</td>
+      <td th:text="${player.position}">Position</td>
+      <td th:text="${player.overall}">Overall</td>
+      <td th:text="${player.cardType}">Type of Card</td>
+      <td th:text="${player.matchesInContract}">0</td>
+      <td>
+        <button class="manage-button" th:onclick="|window.location='@{/players/' + ${player.id} + '/card}'|">Manage Card</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

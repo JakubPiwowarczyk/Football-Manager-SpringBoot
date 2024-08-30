@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Footballer Card - Football Club Manager</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #162447;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      color: #f0f0f0;
+    }
+
+    .player-name {
+      font-size: 36px;
+      color: #e94560;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .player-rating {
+      font-size: 28px;
+      color: #f0f0f0;
+      margin-bottom: 20px;
+    }
+
+    .player-info {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .player-info p {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .player-stats {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .player-stats p {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .button {
+      background-color: #1f4068;
+      color: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #1a1a2e;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="player-name" th:text="${player.name}">Player Name</div>
+  <div class="player-name" th:text="${player.surname}">Player Name</div>
+  <div class="player-rating">Overall Rating: <span th:text="${player.overallRating}">0</span></div>
+  <div class="player-info">
+    <p>Date of Birth: <span th:text="${player.birthDate}">YYYY-MM-DD</span></p>
+    <p>Matches in Contract: <span th:text="${player.matchesInContract}">0</span></p>
+    <p>Salary per Match: <span th:text="${player.salaryPerMatch}">$0</span></p>
+    <p>Position: <span th:text="${player.position}">Position</span></p>
+  </div>
+  <div class="player-stats">
+    <p>Stat 1: <span th:text="${player.stat1}">0</span></p>
+    <p>Stat 2: <span th:text="${player.stat2}">0</span></p>
+    <p>Stat 3: <span th:text="${player.stat3}">0</span></p>
+    <p>Stat 4: <span th:text="${player.stat4}">0</span></p>
+    <p>Stat 5: <span th:text="${player.stat5}">0</span></p>
+    <p>Stat 6: <span th:text="${player.stat6}">0</span></p>
+  </div>
+  <div class="buttons">
+    <div class="button" th:onclick="|window.location='@{/players/renew-contract}'|">Renew the Contract</div>
+    <div class="button" th:onclick="|window.location='@{/players/create-transfer-offer}'|">Create Transfer Offer</div>
+    <div class="button" th:onclick="|window.location='@{/players/add-to-starting-eleven}'|">Add to Starting 11</div>
+  </div>
+</div>
+</body>
+</html>

@@ -16,64 +16,82 @@
 
         .container {
             background-color: #162447;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-            width: 80%;
-            max-width: 900px;
+            width: 90%;
+            max-width: 1000px;
+            color: #f0f0f0;
         }
 
-        .table-title {
-            color: #e94560;
-            font-size: 24px;
-            margin-bottom: 20px;
+        h1 {
             text-align: center;
+            color: #e94560;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #1f4068;
         }
 
         th, td {
             padding: 15px;
-            color: #f0f0f0;
-            border-bottom: 1px solid #1f4068;
+            text-align: center;
+            font-size: 18px;
         }
 
         th {
             background-color: #1f4068;
-            font-size: 18px;
-            text-align: center;
+            color: #f0f0f0;
         }
 
-        td {
-            font-size: 16px;
-            text-align: center;
+        tr:nth-child(even) {
+            background-color: #1a1a2e;
         }
 
-        tr:hover {
+        .manage-button {
             background-color: #1f4068;
+            color: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+        }
+
+        .manage-button:hover {
+            background-color: #e94560;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="table-title">Your Clubs</div>
+    <h1>Your Clubs</h1>
     <table>
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Club Name</th>
             <th>Budget</th>
             <th>League Points</th>
+            <th>Manage</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="club : ${clubs}">
             <td th:text="${club.name}">Club Name</td>
-            <td th:text="${club.budget}">Club Budget</td>
-            <td th:text="${club.leaguePoints}">League Points</td>
+            <td th:text="${club.budget}">$0</td>
+            <td th:text="${club.leaguePoints}">0</td>
+            <td>
+                <button class="manage-button" th:onclick="|window.location='@{/clubs/' + ${club.id} + '/manage}'|">Manage Club</button>
+            </td>
         </tr>
         </tbody>
     </table>
