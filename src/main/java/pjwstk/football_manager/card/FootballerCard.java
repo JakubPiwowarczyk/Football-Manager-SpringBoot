@@ -1,9 +1,11 @@
 package pjwstk.football_manager.card;
 
 import jakarta.persistence.*;
+import pjwstk.football_manager.club.Club;
 import pjwstk.football_manager.footballer.Footballer;
 import pjwstk.football_manager.footballer.Position;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -19,6 +21,8 @@ public abstract class FootballerCard {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     protected Footballer footballer;
+    @ManyToOne
+    protected Club club;
 
     // Stats for field players
     protected int pace;
@@ -39,7 +43,7 @@ public abstract class FootballerCard {
     public FootballerCard() {
     }
 
-    public FootballerCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer,
+    public FootballerCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club,
                           int pace, int shooting, int passing, int dribbling, int defending, int physical,
                           int diving, int handling, int kicking, int reflexes, int speed, int positioning) {
         this.id = id;
@@ -47,6 +51,7 @@ public abstract class FootballerCard {
         this.setSalaryPerMatch(salaryPerMatch);
         if (footballer == null) throw new IllegalArgumentException("Footballer is null");
         this.footballer = footballer;
+        this.club = club;
         this.setPace(pace);
         this.setShooting(shooting);
         this.setPassing(passing);
@@ -113,6 +118,14 @@ public abstract class FootballerCard {
 
     public Footballer getFootballer() {
         return footballer;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     public int getPace() {
@@ -245,5 +258,40 @@ public abstract class FootballerCard {
                     this.dribbling + this.defending + this.physical)/6;
         }
         return overallRating;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FootballerCard that = (FootballerCard) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "FootballerCard{" +
+                "id=" + id +
+                ", matchesInContract=" + matchesInContract +
+                ", salaryPerMatch=" + salaryPerMatch +
+                ", footballer=" + footballer +
+                ", pace=" + pace +
+                ", shooting=" + shooting +
+                ", passing=" + passing +
+                ", dribbling=" + dribbling +
+                ", defending=" + defending +
+                ", physical=" + physical +
+                ", diving=" + diving +
+                ", handling=" + handling +
+                ", kicking=" + kicking +
+                ", reflexes=" + reflexes +
+                ", speed=" + speed +
+                ", positioning=" + positioning +
+                '}';
     }
 }

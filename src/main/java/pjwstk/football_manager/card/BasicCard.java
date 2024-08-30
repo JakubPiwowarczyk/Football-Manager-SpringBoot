@@ -2,6 +2,7 @@ package pjwstk.football_manager.card;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import pjwstk.football_manager.club.Club;
 import pjwstk.football_manager.footballer.Footballer;
 import pjwstk.football_manager.player.Player;
 
@@ -16,11 +17,11 @@ public class BasicCard extends FootballerCard {
     public BasicCard() {
     }
 
-    public BasicCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer,
+    public BasicCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club,
                      int pace, int shooting, int passing, int dribbling, int defending, int physical,
                      int diving, int handling, int kicking, int reflexes, int speed, int positioning,
                      PlayStyle playStyle1) {
-        super(id, matchesInContract, salaryPerMatch, footballer, pace, shooting, passing, dribbling, defending, physical,
+        super(id, matchesInContract, salaryPerMatch, footballer, club, pace, shooting, passing, dribbling, defending, physical,
                 diving, handling, kicking, reflexes, speed, positioning);
         this.playStyle1 = playStyle1;
     }

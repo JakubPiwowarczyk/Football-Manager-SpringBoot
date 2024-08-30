@@ -2,6 +2,7 @@ package pjwstk.football_manager.card;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import pjwstk.football_manager.club.Club;
 import pjwstk.football_manager.footballer.Footballer;
 
 import java.util.UUID;
@@ -18,13 +19,13 @@ public class TeamOfTheSeasonCard extends FootballerCard {
     public TeamOfTheSeasonCard() {
     }
 
-    public TeamOfTheSeasonCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer,
+    public TeamOfTheSeasonCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club,
                                int pace, int shooting, int passing, int dribbling, int defending, int physical,
                                int diving, int handling, int kicking, int reflexes, int speed, int positioning,
                                PlayStyle playStyle1, PlayStyle playStyle2, PlayStyle playStyle3) {
-        super(id, matchesInContract, salaryPerMatch, footballer,
-                pace, shooting, passing, dribbling, defending, physical,
-                diving, handling, kicking, reflexes, speed, positioning);
+        super(id, matchesInContract, salaryPerMatch, footballer, club,
+                pace+STATS_BOOST, shooting+STATS_BOOST, passing+STATS_BOOST, dribbling+STATS_BOOST, defending+STATS_BOOST, physical+STATS_BOOST,
+                diving+STATS_BOOST, handling+STATS_BOOST, kicking+STATS_BOOST, reflexes+STATS_BOOST, speed+STATS_BOOST, positioning+STATS_BOOST);
         this.playStyle1 = playStyle1;
         this.playStyle2 = playStyle2;
         this.playStyle3 = playStyle3;
@@ -33,7 +34,7 @@ public class TeamOfTheSeasonCard extends FootballerCard {
     public TeamOfTheSeasonCard(int matchesInContract, float salaryPerMatch, Footballer footballer,
                                int stat1, int stat2, int stat3, int stat4, int stat5, int stat6,
                                PlayStyle playStyle1, PlayStyle playStyle2, PlayStyle playStyle3) {
-        super(matchesInContract, salaryPerMatch, footballer, stat1, stat2, stat3, stat4, stat5, stat6);
+        super(matchesInContract, salaryPerMatch, footballer, stat1+STATS_BOOST, stat2+STATS_BOOST, stat3+STATS_BOOST, stat4+STATS_BOOST, stat5+STATS_BOOST, stat6+STATS_BOOST);
         this.playStyle1 = playStyle1;
         this.playStyle2 = playStyle2;
         this.playStyle3 = playStyle3;
