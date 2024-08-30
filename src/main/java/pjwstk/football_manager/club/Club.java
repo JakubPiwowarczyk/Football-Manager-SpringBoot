@@ -25,7 +25,7 @@ public class Club {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Player owner;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<FootballerCard> cards = new ArrayList<>();
     @OneToMany
     private List<FootballerCard> starting11 = new ArrayList<>(11);
@@ -110,6 +110,7 @@ public class Club {
 
     public void addCard(FootballerCard card) {
         if (card == null) throw new IllegalArgumentException("Card cannot be null");
+        card.setClub(this);
         if (!cards.contains(card)) cards.add(card);
     }
 

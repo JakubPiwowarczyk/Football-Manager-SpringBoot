@@ -88,11 +88,11 @@
     </thead>
     <tbody>
     <tr th:each="card : ${cards}">
-      <td th:text="${card.footballer.surname}">Surname</td>
-      <td th:text="${card.footballer.position}">Position</td>
-      <td th:text="${card.overallRating}">Overall</td>
-      <td th:text="${card.cardType}">Type of Card</td>
-      <td th:text="${card.matchesInContract}">0</td>
+      <td th:text="${card.getFootballer().getSurname()}">Surname</td>
+      <td th:text="${card.getFootballer().getPosition()}">Position</td>
+      <td th:text="${card.getOverallRating()}">Overall</td>
+      <td th:text="${card.getCardType()}">Type of Card</td>
+      <td th:text="${card.getMatchesInContract()}">0</td>
       <td>
         <button class="manage-button" th:onclick="|window.location='@{/players/' + ${player.id} + '/card}'|">Manage Card</button>
       </td>
