@@ -90,7 +90,9 @@
             <td th:text="${club.budget}">$0</td>
             <td th:text="${club.leaguePoints}">0</td>
             <td>
-                <button class="manage-button" th:onclick="|window.location='@{/clubs/' + ${club.id} + '/manage}'|">Manage Club</button>
+                <a th:href="@{/club/manage-club(clubId=${club.id})}">
+                    <button class="manage-button">Manage Club</button>
+                </a>
             </td>
         </tr>
         </tbody>

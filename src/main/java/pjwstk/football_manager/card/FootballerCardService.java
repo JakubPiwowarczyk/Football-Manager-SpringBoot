@@ -3,6 +3,9 @@ package pjwstk.football_manager.card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class FootballerCardService {
 
@@ -11,5 +14,9 @@ public class FootballerCardService {
     @Autowired
     public FootballerCardService(FootballerCardRepository footballerCardRepository) {
         this.footballerCardRepository = footballerCardRepository;
+    }
+
+    List<FootballerCard> getFootballerCardsByClubId(UUID clubId) {
+        return footballerCardRepository.findByClubId(clubId);
     }
 }

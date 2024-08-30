@@ -4,7 +4,6 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import pjwstk.football_manager.club.Club;
 import pjwstk.football_manager.footballer.Footballer;
-import pjwstk.football_manager.player.Player;
 
 import java.util.UUID;
 
@@ -38,5 +37,10 @@ public class BasicCard extends FootballerCard {
 
     public void setPlayStyle1(PlayStyle playStyle1) {
         this.playStyle1 = playStyle1;
+    }
+
+    @Override
+    public String getCardType() {
+        return "Basic";
     }
 }

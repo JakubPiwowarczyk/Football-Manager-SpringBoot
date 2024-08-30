@@ -51,4 +51,9 @@ public class InFormCard extends FootballerCard{
     public void setPlayStyle2(PlayStyle playStyle2) {
         this.playStyle2 = playStyle2;
     }
+
+    @Override
+    public String getCardType() {
+        return "InForm";
+    }
 }

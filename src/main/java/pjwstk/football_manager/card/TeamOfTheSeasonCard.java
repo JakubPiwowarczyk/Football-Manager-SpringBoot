@@ -63,4 +63,9 @@ public class TeamOfTheSeasonCard extends FootballerCard {
     public void setPlayStyle3(PlayStyle playStyle3) {
         this.playStyle3 = playStyle3;
     }
+
+    @Override
+    public String getCardType() {
+        return "TOTS";
+    }
 }

@@ -260,6 +260,8 @@ public abstract class FootballerCard {
         return overallRating;
     }
 
+    public abstract String getCardType();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
