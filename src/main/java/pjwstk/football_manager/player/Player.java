@@ -3,6 +3,7 @@ package pjwstk.football_manager.player;
 import jakarta.persistence.*;
 import pjwstk.football_manager.club.Club;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,17 +20,18 @@ public class Player {
     private String email;
     @Column(nullable = false)
     private String password;
-    @OneToMany
-    private List<Club> clubs;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Club> clubs = new ArrayList<>();
 
     public Player() {
     }
 
-    public Player(UUID id, String nickname, String email, String password) {
+    public Player(UUID id, String nickname, String email, String password, List<Club> clubs) {
         this.id = id;
         this.setNickname(nickname);
         this.setEmail(email);
         this.setPassword(password);
+        this.clubs = clubs;
     }
 
     public Player(String nickname, String email, String password) {
@@ -76,6 +78,20 @@ public class Player {
         if (password.isBlank())
             throw new IllegalArgumentException("Password cannot be blank");
         this.password = password;
+    }
+
+    public List<Club> getClubs() {
+        return List.copyOf(clubs);
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+    public void addClub(Club club) {
+        if (club == null) throw new IllegalArgumentException("Club cannot be null");
+        if (club.getOwner() != this) throw new IllegalArgumentException("Club does not belong to this player");
+        if (!clubs.contains(club)) clubs.add(club);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class Club {
     private float budget;
     @Column(nullable = false)
     private int leaguePoints;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(nullable = false)
     private Player owner;
     @OneToMany
@@ -46,6 +46,7 @@ public class Club {
         this.leaguePoints = leaguePoints;
         if (owner == null) throw new IllegalArgumentException("Owner cannot be null");
         this.owner = owner;
+        owner.addClub(this);
         this.cards = cards;
         this.starting11 = starting11;
         this.matches = matches;
@@ -56,7 +57,9 @@ public class Club {
         this.name = name;
         this.budget = budget;
         this.leaguePoints = leaguePoints;
+        if (owner == null) throw new IllegalArgumentException("Owner cannot be null");
         this.owner = owner;
+        owner.addClub(this);
     }
 
     public UUID getId() {

@@ -6,7 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pjwstk.football_manager.card.BasicCard;
 import pjwstk.football_manager.card.FootballerCard;
+import pjwstk.football_manager.card.FootballerCardRepository;
 import pjwstk.football_manager.card.PlayStyle;
+import pjwstk.football_manager.club.Club;
+import pjwstk.football_manager.club.ClubRepository;
 import pjwstk.football_manager.footballer.*;
 import pjwstk.football_manager.player.Player;
 import pjwstk.football_manager.player.PlayerRepository;
@@ -20,17 +23,15 @@ public class AppConfig {
     @Bean
     @Autowired
     CommandLineRunner commandLineRunner(PlayerRepository playerRepository,
+                                        ClubRepository clubRepository,
                                         LeagueRepository leagueRepository,
                                         TeamRepository teamRepository,
                                         NationalityRepository nationalityRepository,
-                                        FootballerRepository footballerRepository) {
+                                        FootballerRepository footballerRepository,
+                                        FootballerCardRepository footballerCardRepository) {
         return args -> {
 
             // Creation of sample data
-
-            Player player1 = new Player("Maciej_LOL", "maciek@gmail.com", "123");
-            Player player2 = new Player("Eddie", "eddie@gmail.com", "qwerty");
-            playerRepository.saveAll(List.of(player1, player2));
 
             League laliga = new League("LaLiga");
             League premierLeague = new League("Premier League");
@@ -103,6 +104,22 @@ public class AppConfig {
                     72, 52, 75, 77, 85, 77, PlayStyle.SLIDE_TACKLE);
             FootballerCard edersonBasic = new BasicCard(28, 100f, ederson,
                     86, 82, 91, 86, 64, 86, PlayStyle.FAR_THROW);
+            footballerCardRepository.saveAll(List.of(lewyBasic, messiBasic, yamalBasic, marcBasic,
+                    viniBasic, mbappeBasic, bellinghamBasic, courtoisBasic,
+                    haalandBasic, kevinBasic, stonesBasic, edersonBasic));
+
+            Player player1 = new Player("Maciej_LOL", "maciek@gmail.com", "123");
+            Player player2 = new Player("Eddie", "eddie@gmail.com", "qwerty");
+
+            Club club1 = new Club("Barcelonina", 5000f, 0, player1);
+            Club club2 = new Club("KS Wadowice", 2500.70f, 0, player1);
+            club1.addCard(lewyBasic);
+            club1.addCard(messiBasic);
+            club1.addCard(yamalBasic);
+            club1.addCard(marcBasic);
+            club1.addCard(viniBasic);
+            club1.addCard(stonesBasic);
+            playerRepository.saveAll(List.of(player1, player2));
 
         };
     }

@@ -18,7 +18,7 @@ public abstract class FootballerCard {
     protected UUID id;
     protected int matchesInContract;
     protected float salaryPerMatch;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(nullable = false)
     protected Footballer footballer;
     @ManyToOne
