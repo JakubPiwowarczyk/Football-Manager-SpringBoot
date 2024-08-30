@@ -260,6 +260,54 @@ public abstract class FootballerCard {
         return overallRating;
     }
 
+    public String displayStat1() {
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            return "Diving: " + this.diving;
+        } else {
+            return "Pace: " + this.pace;
+        }
+    }
+
+    public String displayStat2() {
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            return "Handling: " + this.handling;
+        } else {
+            return "Shooting: " + this.shooting;
+        }
+    }
+
+    public String displayStat3() {
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            return "Kicking: " + this.kicking;
+        } else {
+            return "Passing: " + this.passing;
+        }
+    }
+
+    public String displayStat4() {
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            return "Reflexes: " + this.reflexes;
+        } else {
+            return "Dribbling: " + this.dribbling;
+        }
+    }
+
+    public String displayStat5() {
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            return "Speed: " + this.speed;
+        } else {
+            return "Defending: " + this.defending;
+        }
+    }
+
+    public String displayStat6() {
+        if (this.footballer.getPosition() == Position.GOALKEEPER) {
+            return "Positioning: " + this.positioning;
+        } else {
+            return "Physical: " + this.physical;
+        }
+    }
+
     public abstract String getCardType();
 
     @Override

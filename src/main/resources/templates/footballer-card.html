@@ -83,22 +83,22 @@
 </head>
 <body>
 <div class="container">
-  <div class="player-name" th:text="${player.name}">Player Name</div>
-  <div class="player-name" th:text="${player.surname}">Player Name</div>
-  <div class="player-rating">Overall Rating: <span th:text="${player.overallRating}">0</span></div>
+  <div class="player-name" th:text="${card.footballer.name}">Player Name</div>
+  <div class="player-name" th:text="${card.footballer.surname}">Player Name</div>
+  <div class="player-rating">Overall Rating: <span th:text="${card.overallRating}">0</span></div>
   <div class="player-info">
-    <p>Date of Birth: <span th:text="${player.birthDate}">YYYY-MM-DD</span></p>
-    <p>Matches in Contract: <span th:text="${player.matchesInContract}">0</span></p>
-    <p>Salary per Match: <span th:text="${player.salaryPerMatch}">$0</span></p>
-    <p>Position: <span th:text="${player.position}">Position</span></p>
+    <p>Date of Birth: <span th:text="${card.footballer.dateOfBirth}">YYYY-MM-DD</span></p>
+    <p>Matches in Contract: <span th:text="${card.matchesInContract}">0</span></p>
+    <p>Salary per Match: <span th:text="${card.salaryPerMatch}">$0</span></p>
+    <p>Position: <span th:text="${card.footballer.position}">Position</span></p>
   </div>
   <div class="player-stats">
-    <p>Stat 1: <span th:text="${player.stat1}">0</span></p>
-    <p>Stat 2: <span th:text="${player.stat2}">0</span></p>
-    <p>Stat 3: <span th:text="${player.stat3}">0</span></p>
-    <p>Stat 4: <span th:text="${player.stat4}">0</span></p>
-    <p>Stat 5: <span th:text="${player.stat5}">0</span></p>
-    <p>Stat 6: <span th:text="${player.stat6}">0</span></p>
+    <p><span th:text="${card.displayStat1()}">0</span></p>
+    <p><span th:text="${card.displayStat2()}">0</span></p>
+    <p><span th:text="${card.displayStat3()}">0</span></p>
+    <p><span th:text="${card.displayStat4()}">0</span></p>
+    <p><span th:text="${card.displayStat5()}">0</span></p>
+    <p><span th:text="${card.displayStat6()}">0</span></p>
   </div>
   <div class="buttons">
     <div class="button" th:onclick="|window.location='@{/players/renew-contract}'|">Renew the Contract</div>

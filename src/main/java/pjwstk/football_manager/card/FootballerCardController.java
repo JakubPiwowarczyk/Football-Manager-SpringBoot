@@ -44,4 +44,21 @@ public class FootballerCardController {
         model.addAttribute("cards", cards);
         return "cards-list";
     }
+
+    @GetMapping("/manage-card")
+    String manageCard(Model model, @CookieValue("id") String id, @RequestParam String cardId) {
+        Optional<FootballerCard> cardOptional = footballerCardService.getFootballerCardById(UUID.fromString(cardId));
+        if (cardOptional.isEmpty()) {
+            model.addAttribute("errorMessage", "Card not found");
+            return "error";
+        }
+        FootballerCard card = cardOptional.get();
+        UUID ownerId = UUID.fromString(id);
+        if (!card.getClub().getOwner().getId().equals(ownerId)) {
+            model.addAttribute("errorMessage", "Access denied");
+            return "error";
+        }
+        model.addAttribute("card", card);
+        return "footballer-card";
+    }
 }

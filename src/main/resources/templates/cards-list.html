@@ -94,7 +94,9 @@
       <td th:text="${card.getCardType()}">Type of Card</td>
       <td th:text="${card.getMatchesInContract()}">0</td>
       <td>
-        <button class="manage-button" th:onclick="|window.location='@{/players/' + ${player.id} + '/card}'|">Manage Card</button>
+        <a th:href="@{/card/manage-card(cardId=${card.id})}">
+          <button class="manage-button" >Manage Card</button>
+        </a>
       </td>
     </tr>
     </tbody>
