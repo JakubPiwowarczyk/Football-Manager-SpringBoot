@@ -80,7 +80,7 @@ public class FootballerCardController {
         return "footballer-card";
     }
 
-    @GetMapping("/addToStarting11")
+    @GetMapping("/add-to-starting11")
     String addToStarting11(Model model, @CookieValue("id") String id, @RequestParam String cardId) {
         Optional<FootballerCard> cardOptional = footballerCardService.getFootballerCardById(UUID.fromString(cardId));
         if (cardOptional.isEmpty()) {
@@ -95,5 +95,27 @@ public class FootballerCardController {
         }
         clubService.addCardToStarting11(card);
         return getStarting11(model, id, card.club.getId().toString());
+    }
+
+    @GetMapping("/renew-contract")
+    String renewTheContract(Model model, @CookieValue("id") String id, @RequestParam String cardId) {
+        Optional<FootballerCard> cardOptional = footballerCardService.getFootballerCardById(UUID.fromString(cardId));
+        if (cardOptional.isEmpty()) {
+            model.addAttribute("errorMessage", "Card not found");
+            return "error";
+        }
+        FootballerCard card = cardOptional.get();
+        UUID ownerId = UUID.fromString(id);
+        if (!card.getClub().getOwner().getId().equals(ownerId)) {
+            model.addAttribute("errorMessage", "Access denied");
+            return "error";
+        }
+        float cost = (28 - card.getMatchesInContract()) * card.getSalaryPerMatch();
+        if (cost > card.getClub().getBudget()) {
+            model.addAttribute("errorMessage", "Club doesn't have enough budget");
+            return "error";
+        }
+        footballerCardService.renewCardsContract(card);
+        return manageCard(model, id, card.getId().toString());
     }
 }

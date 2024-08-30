@@ -80,7 +80,7 @@ public class AppConfig {
                     LocalDate.of(1993, 8, 17), Position.GOALKEEPER, brazil, city);
             footballerRepository.saveAll(List.of(lewandowski, messi, yamal, marc, vini, mbappe, bellingham, courtois, haaland, kevin, stones, ederson));
 
-            FootballerCard lewyBasic = new BasicCard(28, 150.00f, lewandowski,
+            FootballerCard lewyBasic = new BasicCard(26, 150.00f, lewandowski,
                     75, 91, 80, 87, 44, 84, PlayStyle.POWER_SHOT);
             FootballerCard messiBasic = new BasicCard(28, 200f, messi,
                     80, 87, 90, 94, 33, 64, PlayStyle.RAPID);

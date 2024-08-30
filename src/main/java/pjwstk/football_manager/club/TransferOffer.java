@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import pjwstk.football_manager.card.FootballerCard;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -82,5 +83,30 @@ public class TransferOffer {
 
     public void setBuyer(Club buyer) {
         this.buyer = buyer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TransferOffer that = (TransferOffer) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "TransferOffer{" +
+                "id=" + id +
+                ", price=" + price +
+                ", deadline=" + deadline +
+                ", card=" + card +
+                ", seller=" + seller +
+                ", buyer=" + buyer +
+                '}';
     }
 }

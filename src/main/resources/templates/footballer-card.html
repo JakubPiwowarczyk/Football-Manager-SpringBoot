@@ -101,9 +101,11 @@
     <p><span th:text="${card.displayStat6()}">0</span></p>
   </div>
   <div class="buttons">
-    <div class="button" th:onclick="|window.location='@{/players/renew-contract}'|">Renew the Contract</div>
+    <a th:href="@{/card/renew-contract(cardId=${card.id})}">
+      <div class="button">Renew the Contract</div>
+    </a>
     <div class="button" th:onclick="|window.location='@{/players/create-transfer-offer}'|">Create Transfer Offer</div>
-    <a th:href="@{/card/addToStarting11(cardId=${card.id})}">
+    <a th:href="@{/card/add-to-starting11(cardId=${card.id})}">
       <div class="button">Add to Starting 11</div>
     </a>
   </div>

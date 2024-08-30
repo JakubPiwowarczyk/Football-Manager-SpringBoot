@@ -28,4 +28,11 @@ public class FootballerCardService {
     Optional<FootballerCard> getFootballerCardById(UUID cardId) {
         return footballerCardRepository.findById(cardId);
     }
+
+    public void renewCardsContract(FootballerCard card) {
+        float cost = (28 - card.getMatchesInContract()) * card.getSalaryPerMatch();
+        card.getClub().setBudget(card.getClub().getBudget() - cost);
+        card.setMatchesInContract(28);
+        footballerCardRepository.save(card);
+    }
 }

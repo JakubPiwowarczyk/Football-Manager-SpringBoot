@@ -115,6 +115,7 @@ public class Club {
     }
 
     public void removeCard(FootballerCard card) {
+        starting11.remove(card);
         cards.remove(card);
     }
 
