@@ -33,7 +33,9 @@ public class PlayerController {
             Player p = player.get();
             if (p.getPassword().equals(password)) {
                 model.addAttribute("nickname", p.getNickname());
-                response.addCookie(new Cookie("id", p.getId().toString()));
+                Cookie cookie = new Cookie("id", p.getId().toString());
+                cookie.setPath("/");
+                response.addCookie(cookie);
                 return "home";
             }
         }

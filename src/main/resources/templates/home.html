@@ -62,7 +62,7 @@
     Welcome, <span th:text="${nickname}">Player</span>
   </div>
   <div class="panel-container">
-    <div class="panel" th:onclick="|window.location='@{/clubs}'|">Your Clubs</div>
+    <div class="panel" ><a href="/club/list">Your Clubs</a></div>
     <div class="panel" th:onclick="|window.location='@{/create-match}'|">Create Match</div>
     <div class="panel" th:onclick="|window.location='@{/transfer-market}'|">Transfer Market</div>
     <div class="panel" th:onclick="|window.location='@{/packs-shop}'|">Packs Shop</div>

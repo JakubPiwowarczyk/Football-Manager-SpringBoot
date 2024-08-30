@@ -111,15 +111,17 @@ public class AppConfig {
             Player player1 = new Player("Maciej_LOL", "maciek@gmail.com", "123");
             Player player2 = new Player("Eddie", "eddie@gmail.com", "qwerty");
 
-            Club club1 = new Club("Barcelonina", 5000f, 0, player1);
-            Club club2 = new Club("KS Wadowice", 2500.70f, 0, player1);
+            Club club1 = new Club("Barcelonina", 5000f, 17, player1);
             club1.addCard(lewyBasic);
             club1.addCard(messiBasic);
             club1.addCard(yamalBasic);
             club1.addCard(marcBasic);
             club1.addCard(viniBasic);
             club1.addCard(stonesBasic);
+
             playerRepository.saveAll(List.of(player1, player2));
+            Club club2 = new Club("KS Wadowice", 2500.70f, 11, player1);
+            playerRepository.save(player1);
 
         };
     }
