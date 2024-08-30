@@ -19,11 +19,11 @@ public class TeamOfTheSeasonCard extends FootballerCard {
     public TeamOfTheSeasonCard() {
     }
 
-    public TeamOfTheSeasonCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club,
+    public TeamOfTheSeasonCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club, boolean isPartOfStarting11,
                                int pace, int shooting, int passing, int dribbling, int defending, int physical,
                                int diving, int handling, int kicking, int reflexes, int speed, int positioning,
                                PlayStyle playStyle1, PlayStyle playStyle2, PlayStyle playStyle3) {
-        super(id, matchesInContract, salaryPerMatch, footballer, club,
+        super(id, matchesInContract, salaryPerMatch, footballer, club, isPartOfStarting11,
                 pace+STATS_BOOST, shooting+STATS_BOOST, passing+STATS_BOOST, dribbling+STATS_BOOST, defending+STATS_BOOST, physical+STATS_BOOST,
                 diving+STATS_BOOST, handling+STATS_BOOST, kicking+STATS_BOOST, reflexes+STATS_BOOST, speed+STATS_BOOST, positioning+STATS_BOOST);
         this.playStyle1 = playStyle1;

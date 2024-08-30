@@ -18,11 +18,11 @@ public class InFormCard extends FootballerCard{
     public InFormCard() {
     }
 
-    public InFormCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club,
+    public InFormCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club, boolean isPartOfStarting11,
                       int pace, int shooting, int passing, int dribbling, int defending, int physical,
                       int diving, int handling, int kicking, int reflexes, int speed, int positioning,
                       PlayStyle playStyle1, PlayStyle playStyle2) {
-        super(id, matchesInContract, salaryPerMatch, footballer, club, pace+STATS_BOOST, shooting+STATS_BOOST, passing+STATS_BOOST, dribbling+STATS_BOOST, defending+STATS_BOOST, physical+STATS_BOOST,
+        super(id, matchesInContract, salaryPerMatch, footballer, club, isPartOfStarting11, pace+STATS_BOOST, shooting+STATS_BOOST, passing+STATS_BOOST, dribbling+STATS_BOOST, defending+STATS_BOOST, physical+STATS_BOOST,
                 diving+STATS_BOOST, handling+STATS_BOOST, kicking+STATS_BOOST, reflexes+STATS_BOOST, speed+STATS_BOOST, positioning+STATS_BOOST);
         this.playStyle1 = playStyle1;
         this.playStyle2 = playStyle2;

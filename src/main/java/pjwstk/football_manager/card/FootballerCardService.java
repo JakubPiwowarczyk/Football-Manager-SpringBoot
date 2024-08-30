@@ -21,6 +21,10 @@ public class FootballerCardService {
         return footballerCardRepository.findByClubId(clubId);
     }
 
+    List<FootballerCard> getStarting11ByClubId(UUID clubId) {
+        return footballerCardRepository.findByClubIdAndIsPartOfStarting11IsTrue(clubId);
+    }
+
     Optional<FootballerCard> getFootballerCardById(UUID cardId) {
         return footballerCardRepository.findById(cardId);
     }

@@ -11,4 +11,5 @@ public interface FootballerCardRepository extends JpaRepository<FootballerCard, 
 
     List<FootballerCard> findByClubId(UUID clubId);
 
+    List<FootballerCard> findByClubIdAndIsPartOfStarting11IsTrue(UUID clubId);
 }

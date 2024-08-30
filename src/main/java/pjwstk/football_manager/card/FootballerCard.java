@@ -23,6 +23,7 @@ public abstract class FootballerCard {
     protected Footballer footballer;
     @ManyToOne
     protected Club club;
+    protected boolean isPartOfStarting11 = false;
 
     // Stats for field players
     protected int pace;
@@ -43,7 +44,7 @@ public abstract class FootballerCard {
     public FootballerCard() {
     }
 
-    public FootballerCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club,
+    public FootballerCard(UUID id, int matchesInContract, float salaryPerMatch, Footballer footballer, Club club, boolean isPartOfStarting11,
                           int pace, int shooting, int passing, int dribbling, int defending, int physical,
                           int diving, int handling, int kicking, int reflexes, int speed, int positioning) {
         this.id = id;
@@ -52,6 +53,7 @@ public abstract class FootballerCard {
         if (footballer == null) throw new IllegalArgumentException("Footballer is null");
         this.footballer = footballer;
         this.club = club;
+        this.isPartOfStarting11 = isPartOfStarting11;
         this.setPace(pace);
         this.setShooting(shooting);
         this.setPassing(passing);
@@ -126,6 +128,14 @@ public abstract class FootballerCard {
 
     public void setClub(Club club) {
         this.club = club;
+    }
+
+    public boolean isPartOfStarting11() {
+        return isPartOfStarting11;
+    }
+
+    public void setPartOfStarting11(boolean partOfStarting11) {
+        isPartOfStarting11 = partOfStarting11;
     }
 
     public int getPace() {
