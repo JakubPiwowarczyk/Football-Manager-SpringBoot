@@ -1,7 +1,8 @@
-package pjwstk.football_manager.club;
+package pjwstk.football_manager.transferoffer;
 
 import jakarta.persistence.*;
 import pjwstk.football_manager.card.FootballerCard;
+import pjwstk.football_manager.club.Club;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -15,7 +16,7 @@ public class TransferOffer {
     private UUID id;
     private float price;
     private LocalDate deadline;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private FootballerCard card;
     @ManyToOne
     private Club seller;
@@ -27,19 +28,20 @@ public class TransferOffer {
 
     public TransferOffer(UUID id, float price, LocalDate deadline, FootballerCard card, Club seller, Club buyer) {
         this.id = id;
-        this.price = price;
-        this.deadline = deadline;
+        this.setPrice(price);
+        this.setDeadline(deadline);
+        if (card == null) throw new IllegalArgumentException("card cannot be null");
         this.card = card;
         this.seller = seller;
         this.buyer = buyer;
     }
 
-    public TransferOffer(float price, LocalDate deadline, FootballerCard card, Club seller, Club buyer) {
-        this.price = price;
-        this.deadline = deadline;
+    public TransferOffer(float price, LocalDate deadline, FootballerCard card, Club seller) {
+        this.setPrice(price);
+        this.setDeadline(deadline);
+        if (card == null) throw new IllegalArgumentException("card cannot be null");
         this.card = card;
         this.seller = seller;
-        this.buyer = buyer;
     }
 
     public UUID getId() {

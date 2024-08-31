@@ -104,7 +104,9 @@
     <a th:href="@{/card/renew-contract(cardId=${card.id})}">
       <div class="button">Renew the Contract</div>
     </a>
-    <div class="button" th:onclick="|window.location='@{/players/create-transfer-offer}'|">Create Transfer Offer</div>
+    <a th:href="@{/transfer/create-offer-page(cardId=${card.id})}">
+      <div class="button">Create Transfer Offer</div>
+    </a>
     <a th:href="@{/card/add-to-starting11(cardId=${card.id})}">
       <div class="button">Add to Starting 11</div>
     </a>

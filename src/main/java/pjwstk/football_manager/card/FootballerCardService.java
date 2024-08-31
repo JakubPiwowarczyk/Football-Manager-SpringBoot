@@ -17,15 +17,15 @@ public class FootballerCardService {
         this.footballerCardRepository = footballerCardRepository;
     }
 
-    List<FootballerCard> getFootballerCardsByClubId(UUID clubId) {
+    public List<FootballerCard> getFootballerCardsByClubId(UUID clubId) {
         return footballerCardRepository.findByClubId(clubId);
     }
 
-    List<FootballerCard> getStarting11ByClubId(UUID clubId) {
+    public List<FootballerCard> getStarting11ByClubId(UUID clubId) {
         return footballerCardRepository.findByClubIdAndIsPartOfStarting11IsTrue(clubId);
     }
 
-    Optional<FootballerCard> getFootballerCardById(UUID cardId) {
+    public Optional<FootballerCard> getFootballerCardById(UUID cardId) {
         return footballerCardRepository.findById(cardId);
     }
 

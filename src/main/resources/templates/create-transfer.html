@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Transfer Offer - Football Club Manager</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #162447;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            color: #f0f0f0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #e94560;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .player-info {
+            background-color: #1f4068;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .player-info h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #f0f0f0;
+        }
+
+        .player-info p {
+            margin: 5px 0 0 0;
+            font-size: 18px;
+            color: #dcdcdc;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #f0f0f0;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #1a1a2e;
+            color: #f0f0f0;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 5px #e94560;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #e94560;
+            color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .submit-button:hover {
+            background-color: #d33c50;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Create Transfer Offer</h1>
+    </div>
+    <div class="player-info">
+        <h2 th:text="${card.footballer.name}">Player Surname</h2>
+        <h2 th:text="${card.footballer.surname}">Player Surname</h2>
+        <p>Overall Rating: <span th:text="${card.getOverallRating()}">85</span></p>
+    </div>
+    <form action="/transfer/create-offer" method="post">
+        <input type="hidden" name="cardId" th:value="${card.id}" />
+        <div class="form-group">
+            <label for="price">Transfer Price ($)</label>
+            <input type="number" id="price" name="price" min="0" step="1000" required />
+        </div>
+        <div class="form-group">
+            <label for="endDate">End Date (YYYY-MM-DD)</label>
+            <input type="date" id="endDate" name="endDate" required />
+        </div>
+        <button type="submit" class="submit-button">Submit Offer</button>
+    </form>
+</div>
+</body>
+</html>

@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import pjwstk.football_manager.card.FootballerCard;
 import pjwstk.football_manager.match.Match;
 import pjwstk.football_manager.player.Player;
+import pjwstk.football_manager.transferoffer.TransferOffer;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 public class Club {

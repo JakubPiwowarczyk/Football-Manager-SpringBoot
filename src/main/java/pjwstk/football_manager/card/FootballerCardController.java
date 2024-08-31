@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pjwstk.football_manager.club.Club;
 import pjwstk.football_manager.club.ClubService;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
