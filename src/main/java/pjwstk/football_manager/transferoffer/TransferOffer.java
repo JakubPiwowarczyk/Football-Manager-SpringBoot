@@ -33,6 +33,7 @@ public class TransferOffer {
         if (card == null) throw new IllegalArgumentException("card cannot be null");
         this.card = card;
         this.seller = seller;
+        if (seller != null) seller.addToTransferOffers(this);
         this.buyer = buyer;
     }
 
@@ -42,6 +43,7 @@ public class TransferOffer {
         if (card == null) throw new IllegalArgumentException("card cannot be null");
         this.card = card;
         this.seller = seller;
+        if (seller != null) seller.addToTransferOffers(this);
     }
 
     public UUID getId() {

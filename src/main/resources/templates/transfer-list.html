@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer Offers - Football Club Manager</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a2e;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #162447;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            width: 80%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e94560;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1f4068;
+            color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #1a1a2e;
+        }
+
+        td {
+            border-bottom: 1px solid #1f4068;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Transfer Offers</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Overall</th>
+            <th>Price ($)</th>
+            <th>Deadline</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="offer : ${transferOffers}">
+            <td th:text="${offer.card.footballer.name}">John</td>
+            <td th:text="${offer.card.footballer.surname}">Doe</td>
+            <td th:text="${offer.card.getOverallRating()}">85</td>
+            <td th:text="${offer.price}">500000</td>
+            <td th:text="${offer.deadline}">2024-12-31</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pjwstk.football_manager.card.FootballerCard;
 import pjwstk.football_manager.match.Match;
+import pjwstk.football_manager.transferoffer.TransferOffer;
 
 import java.util.List;
 import java.util.Optional;
@@ -102,5 +103,23 @@ public class ClubController {
         List<FootballerCard> cards = club.getStarting11();
         model.addAttribute("cards", cards);
         return "cards-list";
+    }
+
+    @GetMapping("/transfer-list")
+    String getTransferOffers(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+        Optional<Club> clubOptional = clubService.getById(UUID.fromString(clubId));
+        if (clubOptional.isEmpty()) {
+            model.addAttribute("errorMessage", "Club not found");
+            return "error";
+        }
+        Club club = clubOptional.get();
+        UUID ownerId = UUID.fromString(id);
+        if (!club.getOwner().getId().equals(ownerId)) {
+            model.addAttribute("errorMessage", "Access denied");
+            return "error";
+        }
+        List<TransferOffer> offers = club.getTransferOffers();
+        model.addAttribute("transferOffers", offers);
+        return "transfer-list";
     }
 }
