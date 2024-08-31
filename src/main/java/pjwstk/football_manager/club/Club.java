@@ -5,10 +5,8 @@ import pjwstk.football_manager.card.FootballerCard;
 import pjwstk.football_manager.match.Match;
 import pjwstk.football_manager.player.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class Club {
@@ -29,7 +27,7 @@ public class Club {
     private List<FootballerCard> cards = new ArrayList<>();
     @OneToMany
     private List<FootballerCard> starting11 = new ArrayList<>(11);
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Match> matches = new ArrayList<>();
     @OneToMany
     private List<TransferOffer> transferOffers = new ArrayList<>();
@@ -136,7 +134,10 @@ public class Club {
     }
 
     public List<Match> getMatches() {
-        return List.copyOf(matches);
+        List<Match> sortedMatches = matches.stream()
+                .sorted(Comparator.comparing(Match::getMatchDate))
+                .toList();
+        return List.copyOf(sortedMatches);
     }
 
     public void setMatches(List<Match> matches) {

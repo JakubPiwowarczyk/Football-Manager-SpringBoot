@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 import pjwstk.football_manager.club.Club;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "match_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class Match {
 
     @Id
@@ -27,14 +30,18 @@ public abstract class Match {
         this.setHostScore(hostScore);
         this.setGuestsScore(guestsScore);
         this.setMatchDate(matchDate);
+        if (host == null) throw new IllegalArgumentException("Host cannot be null");
         this.host = host;
+        host.addToMatches(this);
     }
 
     public Match(int hostScore, int guestsScore, LocalDate matchDate, Club host) {
         this.hostScore = hostScore;
         this.guestsScore = guestsScore;
         this.matchDate = matchDate;
+        if (host == null) throw new IllegalArgumentException("Host cannot be null");
         this.host = host;
+        host.addToMatches(this);
     }
 
     public UUID getId() {
@@ -75,5 +82,32 @@ public abstract class Match {
 
     public Club getHost() {
         return host;
+    }
+
+    public abstract String getOpponent();
+    public abstract String getProfit();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Match match = (Match) o;
+        return Objects.equals(id, match.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", hostScore=" + hostScore +
+                ", guestsScore=" + guestsScore +
+                ", matchDate=" + matchDate +
+                ", host=" + host +
+                '}';
     }
 }

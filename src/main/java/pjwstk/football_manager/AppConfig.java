@@ -11,6 +11,10 @@ import pjwstk.football_manager.card.PlayStyle;
 import pjwstk.football_manager.club.Club;
 import pjwstk.football_manager.club.ClubRepository;
 import pjwstk.football_manager.footballer.*;
+import pjwstk.football_manager.match.Match;
+import pjwstk.football_manager.match.MatchRepository;
+import pjwstk.football_manager.match.MatchVsBot;
+import pjwstk.football_manager.match.MatchVsPlayer;
 import pjwstk.football_manager.player.Player;
 import pjwstk.football_manager.player.PlayerRepository;
 
@@ -28,7 +32,8 @@ public class AppConfig {
                                         TeamRepository teamRepository,
                                         NationalityRepository nationalityRepository,
                                         FootballerRepository footballerRepository,
-                                        FootballerCardRepository footballerCardRepository) {
+                                        FootballerCardRepository footballerCardRepository,
+                                        MatchRepository matchRepository) {
         return args -> {
 
             // Creation of sample data
@@ -118,9 +123,11 @@ public class AppConfig {
             club1.addCard(marcBasic);
             club1.addCard(viniBasic);
             club1.addCard(stonesBasic);
+            Match match1 = new MatchVsBot(2, 5, LocalDate.now(), club1);
 
             playerRepository.saveAll(List.of(player1, player2));
             Club club2 = new Club("KS Wadowice", 2500.70f, 11, player1);
+            Match match2 = new MatchVsPlayer(3, 2, LocalDate.now(), club1, 400f, club2);
             playerRepository.save(player1);
 
         };

@@ -68,7 +68,9 @@
     <p>League Points: <span th:text="${club.leaguePoints}">0</span></p>
   </div>
   <div class="buttons">
-    <div class="button" th:onclick="|window.location='@{/clubs/match-history}'|">Match History</div>
+    <a th:href="@{/club/match-history(clubId=${club.id})}">
+      <div class="button">Match History</div>
+    </a>
     <div class="button" th:onclick="|window.location='@{/clubs/transfer-offers}'|">Transfer Offers</div>
     <a th:href="@{/card/list(clubId=${club.id})}">
       <div class="button" >Cards</div>

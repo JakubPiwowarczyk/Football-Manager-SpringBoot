@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pjwstk.football_manager.card.FootballerCard;
+import pjwstk.football_manager.match.Match;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +48,23 @@ public class ClubController {
         }
         model.addAttribute("club", club);
         return "club-info";
+    }
+
+    @GetMapping("/match-history")
+    String getMatchHistory(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+        Optional<Club> clubOptional = clubService.getById(UUID.fromString(clubId));
+        if (clubOptional.isEmpty()) {
+            model.addAttribute("errorMessage", "Club not found");
+            return "error";
+        }
+        Club club = clubOptional.get();
+        UUID ownerId = UUID.fromString(id);
+        if (!club.getOwner().getId().equals(ownerId)) {
+            model.addAttribute("errorMessage", "Access denied");
+            return "error";
+        }
+        List<Match> matchHistory = club.getMatches();
+        model.addAttribute("matches", matchHistory);
+        return "match-list";
     }
 }
