@@ -67,4 +67,40 @@ public class ClubController {
         model.addAttribute("matches", matchHistory);
         return "match-list";
     }
+
+    @GetMapping("/cards-list")
+    String getCards(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+        Optional<Club> clubOptional = clubService.getById(UUID.fromString(clubId));
+        if (clubOptional.isEmpty()) {
+            model.addAttribute("errorMessage", "Club not found");
+            return "error";
+        }
+        Club club = clubOptional.get();
+        UUID ownerId = UUID.fromString(id);
+        if (!club.getOwner().getId().equals(ownerId)) {
+            model.addAttribute("errorMessage", "Access denied");
+            return "error";
+        }
+        List<FootballerCard> cards = club.getCards();
+        model.addAttribute("cards", cards);
+        return "cards-list";
+    }
+
+    @GetMapping("/starting11")
+    String getStarting11(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+        Optional<Club> clubOptional = clubService.getById(UUID.fromString(clubId));
+        if (clubOptional.isEmpty()) {
+            model.addAttribute("errorMessage", "Club not found");
+            return "error";
+        }
+        Club club = clubOptional.get();
+        UUID ownerId = UUID.fromString(id);
+        if (!club.getOwner().getId().equals(ownerId)) {
+            model.addAttribute("errorMessage", "Access denied");
+            return "error";
+        }
+        List<FootballerCard> cards = club.getStarting11();
+        model.addAttribute("cards", cards);
+        return "cards-list";
+    }
 }

@@ -72,11 +72,11 @@
       <div class="button">Match History</div>
     </a>
     <div class="button" th:onclick="|window.location='@{/clubs/transfer-offers}'|">Transfer Offers</div>
-    <a th:href="@{/card/list(clubId=${club.id})}">
+    <a th:href="@{/club/cards-list(clubId=${club.id})}">
       <div class="button" >Cards</div>
     </a>
-    <a th:href="@{/card/starting11(clubId=${club.id})}">
-      <div class="button" th:onclick="|window.location='@{/clubs/starting-eleven}'|">Starting 11</div>
+    <a th:href="@{/club/starting11(clubId=${club.id})}">
+      <div class="button">Starting 11</div>
     </a>
   </div>
 </div>
