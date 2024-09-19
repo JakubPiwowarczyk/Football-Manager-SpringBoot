@@ -1,4 +1,6 @@
-## The aim of this project was to design a system similar to the logical layer of the Ultimate Team mode known from EAFC games and to implement the selected use case.
+## About the project
+The aim of this project was to design a system similar to the logical layer of the Ultimate Team mode known from EAFC games and to implement the selected use case.
+## Documentation
 ### Analitical Diagram:
 ![Analitical Diagram](https://github.com/user-attachments/assets/e7ef1037-a1fc-433e-9b37-ac5bf08ba469)
 ### Design Diagram:
