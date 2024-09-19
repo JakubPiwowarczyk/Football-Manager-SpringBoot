@@ -15,11 +15,10 @@
     }
 
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-align: center;
-      width: 100%;
+      padding: 40px;
+      border-radius: 10px;
+      width: 80%;
       max-width: 600px;
     }
 
@@ -31,10 +30,8 @@
 
     .panel-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-      width: 100%;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .panel {
@@ -62,7 +59,9 @@
     Welcome, <span th:text="${nickname}">Player</span>
   </div>
   <div class="panel-container">
-    <div class="panel" ><a href="/club/list">Your Clubs</a></div>
+    <a th:href="@{/club/list}">
+      <div class="panel" >Your Clubs</div>
+    </a>
     <div class="panel" th:onclick="|window.location='@{/create-match}'|">Create Match</div>
     <div class="panel" th:onclick="|window.location='@{/transfer-market}'|">Transfer Market</div>
     <div class="panel" th:onclick="|window.location='@{/packs-shop}'|">Packs Shop</div>
