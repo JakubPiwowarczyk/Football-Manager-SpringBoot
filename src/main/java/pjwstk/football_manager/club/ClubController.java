@@ -49,12 +49,11 @@ public class ClubController {
      * Displays the details of a specific club owned by the user on the 'club-info' page.
      *
      * @param model the model to pass attributes to the view
-     * @param id the UUID of the owner stored in a cookie
      * @param clubId the UUID of the club to be managed
      * @return the name of the view to be rendered ('club-info'), or an error page if validation fails
      */
     @GetMapping("/manage-club")
-    String manageClub(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+    String manageClub(Model model, @RequestParam String clubId) {
         Club club = clubService.getById(UUID.fromString(clubId)).orElseThrow();
         model.addAttribute("club", club);
         return "club-info";
@@ -64,12 +63,11 @@ public class ClubController {
      * Retrieves the match history for a specific club and displays it on the 'match-list' page.
      *
      * @param model the model to pass attributes to the view
-     * @param id the UUID of the owner stored in a cookie
      * @param clubId the UUID of the club whose match history is requested
      * @return the name of the view to be rendered ('match-list'), or an error page if validation fails
      */
     @GetMapping("/match-history")
-    String getMatchHistory(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+    String getMatchHistory(Model model, @RequestParam String clubId) {
         Club club = clubService.getById(UUID.fromString(clubId)).orElseThrow();
         List<Match> matchHistory = club.getMatches();
         model.addAttribute("matches", matchHistory);
@@ -80,12 +78,11 @@ public class ClubController {
      * Retrieves the list of footballer cards for a specific club and displays it on the 'cards-list' page.
      *
      * @param model the model to pass attributes to the view
-     * @param id the UUID of the owner stored in a cookie
      * @param clubId the UUID of the club whose cards are requested
      * @return the name of the view to be rendered ('cards-list'), or an error page if validation fails
      */
     @GetMapping("/cards-list")
-    String getCards(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+    String getCards(Model model, @RequestParam String clubId) {
         Club club = clubService.getById(UUID.fromString(clubId)).orElseThrow();
         List<FootballerCard> cards = club.getCards();
         model.addAttribute("cards", cards);
@@ -96,12 +93,11 @@ public class ClubController {
      * Retrieves the list of starting eleven footballer cards for a specific club and displays it on the 'cards-list' page.
      *
      * @param model the model to pass attributes to the view
-     * @param id the UUID of the owner stored in a cookie
      * @param clubId the UUID of the club whose starting eleven is requested
      * @return the name of the view to be rendered ('cards-list'), or an error page if validation fails
      */
     @GetMapping("/starting11")
-    String getStarting11(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+    String getStarting11(Model model, @RequestParam String clubId) {
         Club club = clubService.getById(UUID.fromString(clubId)).orElseThrow();
         List<FootballerCard> cards = club.getStarting11();
         model.addAttribute("cards", cards);
@@ -112,12 +108,11 @@ public class ClubController {
      * Retrieves the list of transfer offers for a specific club and displays it on the 'transfer-list' page.
      *
      * @param model the model to pass attributes to the view
-     * @param id the UUID of the owner stored in a cookie
      * @param clubId the UUID of the club whose transfer offers are requested
      * @return the name of the view to be rendered ('transfer-list'), or an error page if validation fails
      */
     @GetMapping("/transfer-list")
-    String getTransferOffers(Model model, @CookieValue("id") String id, @RequestParam String clubId) {
+    String getTransferOffers(Model model, @RequestParam String clubId) {
         Club club = clubService.getById(UUID.fromString(clubId)).orElseThrow();
         List<TransferOffer> offers = club.getTransferOffers();
         model.addAttribute("transferOffers", offers);
