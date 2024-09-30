@@ -31,6 +31,6 @@ public class WebConfig implements WebMvcConfigurer {
                         "/club/transfer-list"
                 );
         registry.addInterceptor(cardOwnershipInterceptor)
-                .addPathPatterns("/card/**");
+                .addPathPatterns("/card/**", "/transfer/**");
     }
 }
